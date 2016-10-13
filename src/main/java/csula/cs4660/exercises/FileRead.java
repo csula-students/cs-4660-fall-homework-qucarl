@@ -1,10 +1,9 @@
 package csula.cs4660.exercises;
 
-import com.google.common.collect.Lists;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -21,14 +20,13 @@ public class FileRead {
      */
     public FileRead(File file) {
         // TODO: read the file content and store content into numbers
-        List<List<Integer>> listOfNumbers = Lists.newArrayList();
+        List<List<Integer>> listOfNumbers = new ArrayList();
         try (Stream<String> stream = Files.lines(file.toPath())) {
             stream.forEach(line -> {
-                List<Integer> lineNumbers = Lists.newArrayList();
+                List<Integer> lineNumbers = new ArrayList();
                 for (String token: line.split(" ")) {
                     lineNumbers.add(Integer.parseInt(token));
                 }
-                System.out.println(line);
                 listOfNumbers.add(lineNumbers);
             });
         } catch (IOException e) {
@@ -69,7 +67,7 @@ public class FileRead {
         for (int i : numbers[lineNumber]) {
             sum += i;
         }
-        return 0;
+        return sum;
     }
 
     private int[][] converList(List<List<Integer>> arrayList) {
@@ -84,3 +82,4 @@ public class FileRead {
         return array;
     }
 }
+
