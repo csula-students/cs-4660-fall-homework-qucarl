@@ -7,6 +7,11 @@ package csula.cs4660.graphs;
  * http://www.tutorialspoint.com/java/java_generics.htm
  */
 public class Node<T> {
+	public Node parent = null;
+	public boolean visited = false;
+	public int distance;
+	
+	
     private final T data;
 
     public Node(T data) {

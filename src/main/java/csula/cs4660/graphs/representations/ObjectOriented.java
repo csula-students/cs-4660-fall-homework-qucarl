@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -19,12 +20,10 @@ import java.util.Scanner;
  * TODO: Please fill the body of methods in this class
  */
 public class ObjectOriented implements Representation {
-    private Collection<Node> nodes;
-    private Collection<Edge> edges;
+    private Collection<Node> nodes = new ArrayList<Node>();
+    private Collection<Edge> edges = new ArrayList<Edge>();
 
     public ObjectOriented(File file) {
-    	nodes = new ArrayList<Node>();
-    	edges = new ArrayList<Edge>();
     	
     		try{
         	Scanner read = new Scanner(file);
@@ -121,6 +120,13 @@ public class ObjectOriented implements Representation {
 
     @Override
     public int distance(Node from, Node to) {
+    	Iterator node = edges.iterator();
+    	while(node.hasNext()){
+    		Edge edge = (Edge)node.next();
+    		if(edge.getFrom().equals(from) && edge.getTo().equals(to)){
+    			return edge.getValue();
+    		}
+    	}
         return 0;
     }
 
