@@ -249,4 +249,19 @@ public class AdjacencyMatrix implements Representation {
 	public Optional<Node> getNode(int index) {
 		return null;
 	}
+	
+
+    @Override
+    public Optional<Node> getNode(Node node) {
+        Iterator<Node> iterator = Arrays.asList(nodes).iterator();
+        Optional<Node> result = Optional.empty();
+        while (iterator.hasNext()) {
+            Node next = iterator.next();
+            if (next.equals(node)) {
+                result = Optional.of(next);
+            }
+        }
+        return result;
+
+    }
 }
